@@ -27,10 +27,10 @@ namespace api.Controllers
             var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, token);
             cookie.HttpOnly = true;
             HttpContext.Current.Response.Cookies.Add(cookie);
-            string s=HttpContext.Current.User.Identity.Name;
-            return Json(new { res=token,s});
+            return Json(new { res=token});
         }
-
+        [HttpGet]
+        [Route("api/User/logout")]
         public IHttpActionResult logout()
         {
             int res = 2;
@@ -45,13 +45,16 @@ namespace api.Controllers
             return Json(new { res});
         }
         [HttpGet]
+        [Route("api/User/Content")]
         public IHttpActionResult Content()
         {
+            string s = HttpContext.Current.User.Identity.Name;
             var cookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName];
             var ticket = FormsAuthentication.Decrypt(cookie.Value);
             string role = ticket.UserData;
             string name = ticket.Name;
-            return Json(new { name,role});
+            
+            return Json(new { name,role,s});
         }
     }
 }
