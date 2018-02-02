@@ -1,4 +1,5 @@
-﻿using System;
+﻿using api.Filter;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,6 +10,7 @@ using System.Web.Security;
 
 namespace api.Controllers
 {
+    [ErroLogFilter]
     public class UserController : ApiController
     {
         [HttpGet]
@@ -48,6 +50,7 @@ namespace api.Controllers
         [Route("api/User/Content")]
         public IHttpActionResult Content()
         {
+
             string s = HttpContext.Current.User.Identity.Name;
             var cookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName];
             var ticket = FormsAuthentication.Decrypt(cookie.Value);
