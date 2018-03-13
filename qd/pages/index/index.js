@@ -15,6 +15,12 @@ Page({
       url: '../logs/logs'
     })
   },
+  //gotostudent
+  gotostudent:function(){
+    wx.navigateTo({
+      url: '../student/student'
+    })
+  },
   onLoad: function () {
     if (app.globalData.userInfo) {
       this.setData({

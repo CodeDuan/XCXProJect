@@ -50,13 +50,11 @@ namespace api.Controllers
         [Route("api/User/Content")]
         public IHttpActionResult Content()
         {
-
             string s = HttpContext.Current.User.Identity.Name;
             var cookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName];
             var ticket = FormsAuthentication.Decrypt(cookie.Value);
             string role = ticket.UserData;
             string name = ticket.Name;
-            
             return Json(new { name,role,s});
         }
     }
