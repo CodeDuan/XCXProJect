@@ -38,5 +38,27 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+  getcode:function(){
+    wx.login({
+      success: function (res) {
+        console.log(res);
+        if (res.code) {
+          //发起网络请求
+          wx.request({
+            url: 'http://www.duanby.com/api/User/Login',
+            data: {
+              code: res.code
+            },
+            method:"get",
+            success: function (res) {
+              console.log(res.data)
+            }
+          })
+        } else {
+          console.log('登录失败！' + res.errMsg)
+        }
+      }
+    });
   }
 })

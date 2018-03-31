@@ -6,5 +6,6 @@
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
       <button bindtap="gett">点击我</button>
 
-      <map longitude="广州经度" latitude="广州纬度"></map>
+      <button bindtap="getcode">得到code</button>
+      <view>{{ code }}</view>
 </view>
