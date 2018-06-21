@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using System.IO;
-using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Options;
 using api.Model;
 
 namespace api.Controllers
