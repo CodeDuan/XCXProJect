@@ -8,11 +8,11 @@ using System.Net;
 using System.IO;
 using Microsoft.Extensions.Options;
 using api.Model;
+using System.Security.Claims;
 
 namespace api.Controllers
 {
     [Produces("application/json")]
-    [Route("api/User")]
     public class UserController : Controller
     {
         private readonly IOptions<WechatConfig> wechatconfig;
@@ -25,7 +25,7 @@ namespace api.Controllers
             appsecret = wechatconfig.Value.appsecret;
         }
         [Route("api/User/Login")]
-        public JsonResult login(string code)
+        public JsonResult Login(string code)
         {
             string verifyurl = wechatconfig.Value.verifyurl.Replace("paramer0", appid).Replace("paramer1", appsecret).Replace("paramer2", code);
             WebRequest wReq = WebRequest.Create(verifyurl);
@@ -34,6 +34,12 @@ namespace api.Controllers
             StreamReader reader = new StreamReader(respStream);
             string res=reader.ReadToEnd();
             return Json(new { obj= res });
+        }
+        [Route("api/User/test")]
+        public JsonResult Test()
+        {
+            string verifyurl = "adfadf";
+            return Json(new { verifyurl });
         }
     }
 }

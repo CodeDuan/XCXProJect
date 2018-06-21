@@ -46,7 +46,7 @@ Page({
         if (res.code) {
           //发起网络请求
           wx.request({
-            url: 'http://www.duanby.com/api/User/Login',
+            url: 'https://www.duanby.com/api/User/Login',
             data: {
               code: res.code
             },
