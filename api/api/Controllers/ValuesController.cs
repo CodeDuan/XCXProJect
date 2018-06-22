@@ -21,12 +21,21 @@ namespace api.Controllers
             appsecret = wechatconfig.Value.appsecret;
         }
         // GET api/values
-        [HttpGet]
-        public IEnumerable<string> Get(string code)
-        {
-            string verifyurl = wechatconfig.Value.verifyurl.Replace("paramer0",appid).Replace("paramer1",appsecret).Replace("paramer2",code);
+        //[HttpGet]
+        //public IEnumerable<string> Get(string code)
+        //{
+        //    string verifyurl = wechatconfig.Value.verifyurl.Replace("paramer0",appid).Replace("paramer1",appsecret).Replace("paramer2",code);
 
-            return new string[] {verifyurl };
+        //    return new string[] {verifyurl };
+        //}
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public JsonResult Get()
+        {
+            return Json(new { aa=wechatconfig });
         }
 
         // GET api/values/5
