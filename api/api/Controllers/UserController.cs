@@ -27,8 +27,8 @@ namespace api.Controllers
             appid = wechatconfig.Value.appid;
             appsecret = wechatconfig.Value.appsecret;
         }
-        [Route("api/User/Login")]
-        public JsonResult Login(string code)
+        [Route("api/user/login")]
+        public JsonResult login(string code)
         {
             string verifyurl = wechatconfig.Value.verifyurl.Replace("paramer0", appid).Replace("paramer1", appsecret).Replace("paramer2", code);
             WebRequest wReq = WebRequest.Create(verifyurl);
