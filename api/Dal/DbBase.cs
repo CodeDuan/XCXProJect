@@ -7,7 +7,7 @@ using Model.DB;
 using System.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.Json;
-
+using MySql.Data.MySqlClient;
 namespace Dal
 {
     public class DbBase
@@ -35,6 +35,7 @@ namespace Dal
         /// <returns></returns>
         public static T GetDetail<T>(string command, DynamicParameters Parameters)
         {
+            // MySqlConnection con = new MySqlConnection("server=127.0.0.1;database=test;uid=root;pwd=;charset='gbk'");
             using (IDbConnection conn =new SqlConnection(connstr))
             {
                 T result = conn.QuerySingleOrDefault<T>(command,Parameters);

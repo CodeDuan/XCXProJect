@@ -13,7 +13,7 @@ namespace Dal
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("username", model.username);
             parameters.Add("pwd", model.pwd);
-            string sqlstr = "select  from user where username=@username and pwd=@pwd";
+            string sqlstr = "select id,username from user where username=@username and pwd=@pwd";
             return GetDetail<User>(sqlstr, parameters);
         }
     }

@@ -17,6 +17,7 @@ namespace manager.Controllers
         }
         
         [HttpPost]
+        [Route("user/login")]
         public IActionResult login(UserForm model)
         {
             User loginuser = user_dal.GetDetail(model);
@@ -30,6 +31,12 @@ namespace manager.Controllers
                 return Json(new { res = 0, msg = "登陆失败" });
             }
         }
+        [HttpGet]
+        public IActionResult test(string model)
+        {
+            return Json(new { aa = "sdf" });
+        }
+
 
     }
 }
