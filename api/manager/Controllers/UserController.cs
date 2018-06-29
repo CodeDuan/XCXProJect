@@ -6,11 +6,13 @@ using Dal;
 using Microsoft.AspNetCore.Mvc;
 using Model.Form;
 using Model.DB;
+using Common;
+
 namespace manager.Controllers
 {
     public class UserController : Controller
     {
-        public UserDal user_dal;
+        private UserDal user_dal;
         public UserController()
         {
             user_dal = new UserDal();
@@ -20,23 +22,25 @@ namespace manager.Controllers
         [Route("user/login")]
         public IActionResult login(UserForm model)
         {
-            User loginuser = user_dal.GetDetail(model);
-            if (loginuser != null)
+            try
             {
+                model.pwd= MD5pwd.getmd5(model.pwd);
+                User loginuser = user_dal.GetDetail(model);
+                if (loginuser != null)
+                {
 
-                return Json(new { res = 1, msg = "登陆成功" });
+                    return Json(new { res = 1, msg = "登陆成功" });
+                }
+                else
+                {
+                    return Json(new { res = 0, msg = "登陆失败" });
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return Json(new { res = 0, msg = "登陆失败" });
+                return Json(new {error= ex.Message });
             }
+            
         }
-        [HttpGet]
-        public IActionResult test(string model)
-        {
-            return Json(new { aa = "sdf" });
-        }
-
-
     }
 }
