@@ -6,6 +6,8 @@ using Dal;
 using Microsoft.AspNetCore.Mvc;
 using Model.Form;
 using Model.DB;
+using Common;
+
 namespace manager.Controllers
 {
     public class UserController : Controller
@@ -20,7 +22,9 @@ namespace manager.Controllers
         [Route("user/login")]
         public IActionResult login(UserForm model)
         {
+            model.pwd = MD5pwd.getmd5(model.pwd);
             User loginuser = user_dal.GetDetail(model);
+
             if (loginuser != null)
             {
 
