@@ -15,7 +15,7 @@ namespace Dal
         /// <summary>
         /// 连接字符串
         /// </summary>
-        private static  string connstr=AppConfigurtaionServices.Configuration["ConnectionStrings:DefaultConnection"]; 
+        private static readonly string connstr=AppConfigurtaionServices.Configuration["ConnectionStrings:DefaultConnection"]; 
         /// <summary>
         /// 获取列表
         /// </summary>
@@ -35,17 +35,10 @@ namespace Dal
         /// <returns></returns>
         public static T GetDetail<T>(string command, DynamicParameters Parameters)
         {
-            try
+            using (IDbConnection conn = new MySqlConnection(connstr))
             {
-                using (IDbConnection conn = new MySqlConnection(connstr))
-                {
-                    T result = conn.QuerySingleOrDefault<T>(command, Parameters);
-                    return result;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                T result = conn.QuerySingleOrDefault<T>(command, Parameters);
+                return result;
             }
         }
     }
