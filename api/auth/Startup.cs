@@ -37,8 +37,8 @@ namespace auth
              var options = new TokenGenerateOption
              {
                  Path = "/token",
-                 Audience = "http://localhost:56209",
-                 Issuer = "http://localhost:56209",
+                 Audience = "www.duanby.com",
+                 Issuer = "www.duanby.com",
                  SigningCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256),
                  Expiration = TimeSpan.FromMinutes(15),
              };

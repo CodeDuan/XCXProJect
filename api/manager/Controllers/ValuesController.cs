@@ -14,6 +14,7 @@ namespace manager.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
+          Response.Cookies.Append("Sample", "This is Cookies.");
             return new string[] { "value1", "value2" };
         }
 
