@@ -7,13 +7,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "api", "api\api.csproj", "{C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "auth", "auth\auth.csproj", "{A21F6BDC-3123-46E0-B174-C6852B5F0589}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "manager", "manager\manager.csproj", "{F6F8C401-4F8A-49EC-85CF-3D962F836463}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "manager", "manager\manager.csproj", "{F6F8C401-4F8A-49EC-85CF-3D962F836463}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dal", "Dal\Dal.csproj", "{3487DFD4-51DB-4F04-9A74-CA05675039D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dal", "Dal\Dal.csproj", "{3487DFD4-51DB-4F04-9A74-CA05675039D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{DD74A051-EFD6-44B3-883C-F989E3F62115}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model", "Model\Model.csproj", "{DD74A051-EFD6-44B3-883C-F989E3F62115}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{ACA2582D-D046-4C0A-837E-C9FD96EBF382}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{ACA2582D-D046-4C0A-837E-C9FD96EBF382}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "manage", "manage\manage.csproj", "{97628C88-CB9D-431C-B821-F2E1BF683B47}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{ACA2582D-D046-4C0A-837E-C9FD96EBF382}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACA2582D-D046-4C0A-837E-C9FD96EBF382}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACA2582D-D046-4C0A-837E-C9FD96EBF382}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97628C88-CB9D-431C-B821-F2E1BF683B47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97628C88-CB9D-431C-B821-F2E1BF683B47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97628C88-CB9D-431C-B821-F2E1BF683B47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97628C88-CB9D-431C-B821-F2E1BF683B47}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,18 @@
+﻿@model Model.DB.Category
+@{
+    ViewData["Title"] = "Detail";
+}
+<div class="main">
+    <div class="main-content">
+        <div class="container-fluid">
+            <form asp-controller="Category" asp-action="AddOrEdit" method="post">
+                <input type="hidden" id="c_id" value="@Model.c_id"/>
+                <input class="form-control" placeholder="text field" value="@Model.c_name" type="text">
+                <input type="hidden" id="img_path" value="@Model.img_path">
+                <input type="file">
+                <button type="button" class="btn btn-default"><i class="fa fa-plus-square"></i> 上传 </button>
+                <input type="submit" />
+            </form>
+        </div>
+    </div>
+</div>

@@ -21,6 +21,13 @@ namespace Model.Form
         //        return MD5pwd.getmd5(pwd);
         //    }
         //}
-        public string code { get; set; }
+        /// <summary>
+        /// 答案
+        /// </summary>
+        public string Answer { get; set; }
+        /// <summary>
+        /// Cookie中对应Captcha的值
+        /// </summary>
+        public string Captcha { get; set; }
     }
 }

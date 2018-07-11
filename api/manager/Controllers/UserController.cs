@@ -32,6 +32,7 @@ namespace manager.Controllers
                 if (loginuser != null)
                 {
                     HttpContext.Session.SetObject<User>("loginuser", loginuser);
+                    Response.Cookies.Append("loginuser", loginuser.username);//前端用此cookie验证登陆状态
                     return Json(new { Code = 100, Message = "登陆成功" });
                 }
                 else
