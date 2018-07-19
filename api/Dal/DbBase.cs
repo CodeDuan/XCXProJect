@@ -27,9 +27,13 @@ namespace Dal
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static List<T> GetList<T>()
+        public static List<T> GetList<T>(string command, DynamicParameters Parameters)
         {
-            return new List<T>();
+            using (IDbConnection conn = new MySqlConnection(connstr))
+            {
+                var list = conn.Query<T>(sql: command, param: Parameters).AsList<T>();
+                return list;
+            }
         }
 
         /// <summary>
@@ -47,6 +51,21 @@ namespace Dal
                 return result;
             }
         }
+        /// <summary>
+        /// 添加/编辑 sql语句
+        /// </summary>
+        /// <param name="command"></param>
+        /// <param name="Parameters"></param>
+        /// <returns></returns>
+        public static bool AddOrEdit(string command,DynamicParameters Parameters)
+        {
+            using (IDbConnection conn = new MySqlConnection(connstr))
+            {
+                int i = conn.Execute(command, Parameters);
+                return i == 1;
+            }
+        }
+       
     }
     public class AppConfigurtaionServices
     {

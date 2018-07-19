@@ -36,6 +36,7 @@ namespace manage
             services.AddMvc(options =>
             {
                 options.Filters.Add<LoginFilter>();
+                options.Filters.Add<ErrFilter>();
             });
             #region 启用session
             services.AddDistributedMemoryCache();

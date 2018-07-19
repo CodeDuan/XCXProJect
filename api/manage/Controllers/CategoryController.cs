@@ -2,19 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Dal;
+using manage.Common;
 using Microsoft.AspNetCore.Mvc;
+using Model.DB;
 
 namespace manage.Controllers
 {
     public class CategoryController : Controller
     {
+        CategoryDal category_dal;
+        public CategoryController()
+        {
+            category_dal = new CategoryDal();
+        }
         /// <summary>
         /// 获取列表
         /// </summary>
         /// <returns></returns>
         public IActionResult Index()
         {
-
             return View();
         }
         /// <summary>
@@ -30,10 +37,16 @@ namespace manage.Controllers
         /// 添加/编辑
         /// </summary>
         /// <returns></returns>
-        public IActionResult AddOrEdit()
+        public IActionResult AddOrEdit(Model.DB.Category model)
         {
-            return View();
+            User loginuser = HttpContext.Session.GetObject<User>("loginuser");
+            model.operate_by = loginuser.username;
+            category_dal.AddOrEdit(model);
+            return Json(new { Code=200});
         }
-
+        public IActionResult GetList()
+        {
+            return Json(new { Code=200, result = category_dal.GetList() }) ;
+        }
     }
 }

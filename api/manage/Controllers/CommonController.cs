@@ -3,29 +3,36 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
 namespace manage.Controllers
 {
     public class CommonController : Controller
     {
+        private readonly IHostingEnvironment _hostingEnvironment;
+
+        public CommonController(IHostingEnvironment hostingEnvironment)
+        {
+            _hostingEnvironment = hostingEnvironment;
+        }
         public IActionResult uploadimg()
         {
             var files = Request.Form.Files;
-            if (!Directory.Exists("~/uploadimg"))
+            var basepath = _hostingEnvironment.WebRootPath;
+            var path = "/uploadimg/" + DateTime.Now.ToString("yyyyMMdd") + "/";
+            if (!Directory.Exists(basepath + path))
             {
-                Directory.CreateDirectory("~/uploadimg");
+                Directory.CreateDirectory(basepath + path);
             }
-            foreach (var item in files)
+            string imgfilename = basepath + path + files[0].FileName;
+
+            using (FileStream fs = new FileStream(imgfilename, FileMode.Create))
             {
-                string imgfilename = "~/uploadimg/" + new Guid().ToString() + ".jpg";
-                using (FileStream fs = new FileStream(imgfilename,FileMode.Create))
-                {
-                    item.CopyTo(fs);
-                    fs.Flush();
-                }
+                files[0].CopyTo(fs);
+                fs.Flush();
             }
-            return View();
+            return Json(new { Code = 100, Message = path + files[0].FileName });
         }
     }
 }

@@ -16,12 +16,16 @@ namespace manage.Filter
             //ActionDescriptor.ControllerDescriptor.ControllerName;
             //context.ActionDescriptor
             //string con=context.ActionDescriptor.ControllerDescriptor.ControllerName;
-            
+
             if (context.Controller.ToString().Contains("LoginController"))
             {
                 return;
             }
-            if (context.Controller.ToString().Contains("CategoryController"))
+            else if (context.Controller.ToString().Contains("CategoryController"))
+            {
+                return;
+            }
+            else if (context.Controller.ToString().Contains("CommonController"))
             {
                 return;
             }

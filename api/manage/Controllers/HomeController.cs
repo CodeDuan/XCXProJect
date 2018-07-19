@@ -15,6 +15,7 @@ namespace manage.Controllers
     {
         public IActionResult Index()
         {
+
             var loginuser=HttpContext.Session.GetObject<User>("loginuser");
             if (loginuser == null)
             {
