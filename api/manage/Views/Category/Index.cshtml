@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Index";
 }
-
+<script src="~/js/category/index.js"></script>
 <div class="main">
     <!-- MAIN CONTENT -->
     <div class="main-content">
@@ -10,11 +10,12 @@
             <h3 class="page-title">分类管理</h3>
 
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6" style="width:100%">
                     <!-- TABLE STRIPED -->
                     <div class="panel">
                         <div class="panel-heading">
-                            <h3 class="panel-title">分类列表</h3>
+                            @*<h3 class="panel-title">分类列表</h3>*@
+                            <a  class="btn btn-success" href="~/category/detail">添加分类</a>
                         </div>
                         <div class="panel-body">
                             <table class="table table-striped">
@@ -23,30 +24,13 @@
                                         <th>#</th>
                                         <th>名称</th>
                                         <th>操作人</th>
-                                        <th>img</th>
+                                        <th>图标</th>
                                         <th>状态</th>
                                         <th>操作时间</th>
                                     </tr>
                                 </thead>
                                 <tbody id="category_list">
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Stevesdfsdf12121212</td>
-                                        <td>Jobs</td>
-                                        <td>steve</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Simon</td>
-                                        <td>Philips</td>
-                                        <td>simon</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Jane</td>
-                                        <td>Doe</td>
-                                        <td>jane</td>
-                                    </tr>
+                                   
                                 </tbody>
                             </table>
                         </div>

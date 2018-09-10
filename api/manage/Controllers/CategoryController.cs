@@ -29,9 +29,17 @@ namespace manage.Controllers
         /// </summary>
         /// <param name="c_id"></param>
         /// <returns></returns>
-        public IActionResult Detail(int c_id)
+        public IActionResult Detail(int? c_id)
         {
-            return View(new Model.DB.Category());
+            if (c_id == null)
+            {
+                return View(new Model.DB.Category());
+            }
+            else
+            {
+                var detail = category_dal.GetDetail(c_id.Value);
+                return View(detail);
+            }
         }
         /// <summary>
         /// 添加/编辑
@@ -44,9 +52,23 @@ namespace manage.Controllers
             category_dal.AddOrEdit(model);
             return Json(new { Code=200});
         }
+        [HttpGet,Route("category/getlist")]
         public IActionResult GetList()
         {
-            return Json(new { Code=200, result = category_dal.GetList() }) ;
+            return Json(new { Code=200, data = category_dal.GetList() }) ;
+        }
+        [HttpPost, Route("category/changestatus")]
+        public IActionResult changestatus(Model.DB.Category model)
+        {
+            if (model.c_id == 0)
+            {
+                return Json(new { Code = 100, res = "id不能为0"});
+            }
+            else
+            {
+                return Json(new { Code = 200, res = category_dal.changestatus(model.is_enable, model.c_id) });
+            }
+            
         }
     }
 }

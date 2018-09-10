@@ -1,0 +1,28 @@
+/* zh_tcwq/pages/test/sp.wxss */
+/**index.wxss**/
+.plate{
+  height:240rpx;
+  background: #fff;
+}
+.plate-item{
+  display: flex;
+  float:left;
+  position: relative;
+  width: 140rpx;
+  height:180rpx;
+  margin-top:38rpx; 
+ margin-left:10rpx;
+}
+.plate-img image{
+  width: 100rpx;
+  height: 100rpx;
+  margin-left:20rpx;
+}
+.plate-info{
+  position: absolute;
+  height:40rpx;
+  font-size: 30rpx;
+  font-family: '微软雅黑';
+  bottom: 60rpx;
+  left:12rpx;
+}

@@ -8,7 +8,6 @@ using System.Net;
 using System.IO;
 using api.Model;
 using System.Security.Claims;
-using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.Extensions.Options;

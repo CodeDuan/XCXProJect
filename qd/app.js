@@ -1,39 +1,90 @@
-//app.js
 App({
-  onLaunch: function () {
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      }
-    })
-    // 获取用户信息
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: res => {
-              // 可以将 res 发送给后台解码出 unionId
-              this.globalData.userInfo = res.userInfo
-
-              // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-              // 所以此处加入 callback 以防止这种情况
-              if (this.userInfoReadyCallback) {
-                this.userInfoReadyCallback(res)
-              }
+    onLaunch: function() {},
+    onShow: function() {},
+    onHide: function() {
+        console.log(getCurrentPages());
+    },
+    onError: function(e) {
+        console.log(e);
+    },
+    getUser: function(s) {
+        var c = this;
+        wx.login({
+            success: function(e) {
+                var n = e.code;
+                wx.setStorageSync("code", n), wx.getUserInfo({
+                    success: function(e) {
+                        console.log(e), wx.setStorageSync("user_info", e.userInfo);
+                        var t = e.userInfo.nickName, o = e.userInfo.avatarUrl;
+                        c.util.request({
+                            url: "entry/wxapp/openid",
+                            cachetime: "0",
+                            data: {
+                                code: n
+                            },
+                            success: function(e) {
+                                console.log(e), wx.setStorageSync("key", e.data.session_key), wx.setStorageSync("openid", e.data.openid);
+                                var n = e.data.openid;
+                                c.util.request({
+                                    url: "entry/wxapp/Login",
+                                    cachetime: "0",
+                                    data: {
+                                        openid: n,
+                                        img: o,
+                                        name: t
+                                    },
+                                    success: function(e) {
+                                        console.log(e), wx.setStorageSync("users", e.data), wx.setStorageSync("uniacid", e.data.uniacid), 
+                                        s(e.data);
+                                    }
+                                });
+                            }
+                        });
+                    },
+                    fail: function(e) {
+                        wx.getSetting({
+                            success: function(e) {
+                                0 == e.authSetting["scope.userInfo"] && wx.openSetting({
+                                    success: function(e) {
+                                        e.authSetting["scope.userInfo"], c.getUser(s);
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
             }
-          })
+        });
+    },
+    ormatDate: function(e) {
+        var n = new Date(1e3 * e);
+        return n.getFullYear() + "-" + t(n.getMonth() + 1, 2) + "-" + t(n.getDate(), 2) + " " + t(n.getHours(), 2) + ":" + t(n.getMinutes(), 2) + ":" + t(n.getSeconds(), 2);
+        function t(e, n) {
+            for (var t = "" + e, o = t.length, s = "", c = n; c-- > o; ) s += "0";
+            return s + t;
         }
-      }
-    })
-  },
-  globalData: {
-    userInfo: null
-  }
-})
+    },
+    ab: function(e) {},
+    util: require("we7/resource/js/util.js"),
+    siteInfo: require("siteinfo.js"),
+    tabBar: {
+        color: "#123",
+        selectedColor: "#1ba9ba",
+        borderStyle: "#1ba9ba",
+        backgroundColor: "#fff",
+        list: [ {
+            pagePath: "/we7/pages/index/index",
+            iconPath: "/we7/resource/icon/home.png",
+            selectedIconPath: "/we7/resource/icon/homeselect.png",
+            text: "首页"
+        }, {
+            pagePath: "/we7/pages/user/index/index",
+            iconPath: "/we7/resource/icon/user.png",
+            selectedIconPath: "/we7/resource/icon/userselect.png",
+            text: "微擎我的"
+        } ]
+    },
+    globalData: {
+        userInfo: null
+    }
+});

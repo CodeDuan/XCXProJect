@@ -16,6 +16,7 @@ namespace manage.Controllers
         {
             _hostingEnvironment = hostingEnvironment;
         }
+
         public IActionResult uploadimg()
         {
             var files = Request.Form.Files;

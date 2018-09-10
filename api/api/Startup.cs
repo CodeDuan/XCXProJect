@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using api.Model;
+using api.Filter;
 
 namespace api
 {
@@ -27,7 +28,10 @@ namespace api
             services.AddMvc();
 
             services.AddOptions();
-            services.Configure<WechatConfig>(Configuration.GetSection("Wechat"));
+            services.AddMvc(options =>
+            {
+                options.Filters.Add<ErrFilter>();
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,6 +43,8 @@ namespace api
             }
 
             app.UseMvc();
+            app.UseStaticFiles();
+            app.UseHttpsRedirection();
         }
     }
 }

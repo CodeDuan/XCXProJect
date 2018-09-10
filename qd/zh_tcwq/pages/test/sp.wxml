@@ -1,0 +1,10 @@
+<view wx:for="{{gategory_list}}" > 
+  <navigator url="/pages/teacher/teacher" hover-class="navigator-hover" class="plate-item">
+    <view class="plate-img">
+      <image src="http://manage.xjbmzxlt.cn{{item.img_path}}"></image>
+      </view>
+      <text class="plate-info">
+        {{item.c_name}}
+      </text>
+  </navigator>
+</view>

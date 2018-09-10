@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Microsoft.IdentityModel.Tokens;
+using Microsoft.IdentityModel.Tokens; 
 namespace Model
 {
     public class TokenGenerateOption

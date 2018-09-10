@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Drawing.Imaging;
+//using System.Drawing;
+//using System.Drawing.Drawing2D;
+//using System.Drawing.Imaging;
+using System.DrawingCore;
+using System.DrawingCore.Drawing2D;
+using System.DrawingCore.Imaging;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -118,7 +121,7 @@ namespace manage.Common
             //var fontNames = FontFamily.Families.Select(_ => _.Name).ToList();
             var fontNames = new List<string>
             {
-                "Helvetica","Arial","Lucida Family","Verdana","Tahoma","Trebuchet MS","Georgia","Times"
+                "Arial","Verdana","Tahoma","Georgia","Times"
             };
 
             //Bitmap 类 封装 GDI+ 包含图形图像和其属性的像素数据的位图。 一个 Bitmap 是用来处理图像像素数据所定义的对象。

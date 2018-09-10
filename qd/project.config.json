@@ -8,10 +8,9 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.9.1",
-	"appid": "wxd2fc569eafacb454",
-	"projectname": "MrsLiu",
-	"isGameTourist": false,
+	"libVersion": "2.2.5",
+	"appid": "wx66f07ac5c9f7edf2",
+	"projectname": "xjbmzxlt",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -19,10 +18,6 @@
 		},
 		"conversation": {
 			"current": -1,
-			"list": []
-		},
-		"game": {
-			"currentL": -1,
 			"list": []
 		},
 		"miniprogram": {
