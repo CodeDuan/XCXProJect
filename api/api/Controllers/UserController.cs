@@ -11,6 +11,7 @@ using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 
 namespace api.Controllers
 {
@@ -35,7 +36,8 @@ namespace api.Controllers
             Stream respStream = wResp.GetResponseStream();
             StreamReader reader = new StreamReader(respStream);
             string res = reader.ReadToEnd();
-            return Json(new { obj = res });
+            var a= JsonConvert.DeserializeObject(res);
+            return Json(new { res=a });
         }
         [Route("api/User/test")]
         public JsonResult Test()

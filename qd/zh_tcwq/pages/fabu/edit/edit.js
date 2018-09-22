@@ -27,46 +27,20 @@ Page({
     },
     onLoad: function(e) {
         console.log(e);
-        console.log(a.data.url);
+        this.setData({
+          gategoryid:e.id,
+          gategoryname:e.name
+        });
+        
         var i = this, t = wx.getStorageSync("users").id;
-        app.util.request({
-            url: "entry/wxapp/GetUserInfo",
-            cachetime: "0",
-            data: {
-                user_id: t
-            },
-            success: function(e) {
-                2 == e.data.state && wx.showModal({
-                    title: "提示",
-                    content: "您的账号异常，请尽快联系管理员",
-                    showCancel: !0,
-                    cancelText: "取消",
-                    confirmText: "确定",
-                    success: function(e) {
-                        wx.navigateBack({
-                            delta: 1
-                        });
-                    },
-                    fail: function(e) {},
-                    complete: function(e) {}
-                });
-            }
-        }), wx.setNavigationBarColor({
+         wx.setNavigationBarColor({
             frontColor: "#ffffff",
             backgroundColor: wx.getStorageSync("color"),
             animation: {
                 duration: 0,
                 timingFunc: "easeIn"
             }
-        }), app.util.request({
-            url: "entry/wxapp/System",
-            cachetime: "0",
-            success: function(e) {
-                i.setData({
-                    System: e.data
-                });
-            }
-        });
+        })
         var a = e.info, n = e.money, s = e.type_id, o = e.type2_id, c = wx.getStorageSync("System");
         wx.setNavigationBarTitle({
             title: a
@@ -85,7 +59,7 @@ Page({
             type: "wgs84",
             success: function(e) {
                 var t = e.latitude + "," + e.longitude;
-                app.util.request({
+                /*app.util.request({
                     url: "entry/wxapp/map",
                     cachetime: "0",
                     data: {
@@ -96,9 +70,9 @@ Page({
                             address: e.data.result.address
                         });
                     }
-                });
+                });*/
             }
-        }), app.util.request({
+        }) /*app.util.request({
             url: "entry/wxapp/Top",
             cachetime: "0",
             success: function(e) {
@@ -125,7 +99,7 @@ Page({
                     label: e.data
                 });
             }
-        });
+        });*/
     },
     selected: function(e) {
         var t = e.currentTarget.id, a = this.data.stick;
@@ -181,8 +155,6 @@ Page({
                     title: "正在上传"
                 });
                 var t = e.tempFilePaths;
-                console.log(a.data.upimgurl);
-                console.log(e.tempFilePaths);
                 a.uploadimg({
                     url: a.data.upimgurl,
                     path: t
@@ -239,7 +211,7 @@ Page({
             imgArray1: _imgArray
         });
     },
-    switch1Change: function(e) {
+    /*switch1Change: function(e) {
         console.log(e.detail.value), e.detail.value || this.setData({
             stick_none: !1,
             money1: 0,
@@ -262,18 +234,9 @@ Page({
         this.setData({
             checked_password: e.detail.value
         });
-    },
+    },*/
     formSubmit: function(e) {
-        console.log("这是保存formid2"), console.log(e), app.util.request({
-            url: "entry/wxapp/SaveFormid",
-            cachetime: "0",
-            data: {
-                user_id: wx.getStorageSync("users").id,
-                form_id: e.detail.formId,
-                openid: wx.getStorageSync("openid")
-            },
-            success: function(e) {}
-        });
+        console.log("这是保存formid2");
         var t = this, a = wx.getStorageSync("city"), n = t.data.num + 1;
         t.setData({
             num: n
@@ -293,25 +256,8 @@ Page({
         });
         var m = wx.getStorageSync("openid"), p = (e.detail.formId, e.detail.value.content.replace("\n", "↵")), y = e.detail.value.name, f = e.detail.value.tel;
         console.log(f);
-        var g = t.data.lunbo;
-        null != g && 0 != g.length || (g = "");
-        t.data.url, wx.getStorageSync("uniacid");
-        var h = t.data.type2_id, w = t.data.type_id, _ = Number(t.data.money) + Number(i), x = _, v = wx.getStorageSync("users").id;
-        console.log(v);
-        var S = "", k = t.data.checked_welfare, b = t.data.checked_password, D = t.data.checked_average, T = 0, A = "", N = "", q = 0, P = 0, C = new RegExp("^[一-龥]+$"), z = 0;
-        if (1 == k) {
-            if (0 == D) {
-                P = 1, T = Number(e.detail.value.welfare_money), N = Number(e.detail.value.welfare_share);
-                var F = T / N;
-                z = T + o / 100 * T, _ += Number(z.toFixed(2));
-            } else {
-                P = 2, T = Number(e.detail.value.welfare_money), N = Number(e.detail.value.welfare_share);
-                F = 1;
-                z = T * N + T * N * (o / 100), _ += Number(z.toFixed(2));
-            }
-            1 == b ? (A = e.detail.value.welfare_pass, q = 2) : q = 1;
-        } else _ = _;
-        if ("" == p ? S = "内容不能为空" : 540 <= p.length ? S = "内容超出了" : "" == y ? S = "姓名不能为空" : "" == f ? S = "电话不能为空" : 1 == k && ("" == T ? S = "红包金额不能为空" : !t.data.checked_average && T < 1 ? S = "福利红包金额不能小于1元" : "" == N ? S = "红包个数不能为空" : F < .1 ? S = "红包份数过大，请合理设置" : t.data.checked_average && T < .1 ? S = "单个红包最小金额不能小于0.1元" : 1 == b && ("" == A ? S = "口令不能为空" : C.test(A) || (S = "口令只能输入汉字"))), 
+        
+        if ("" == p ? S = "内容不能为空" : 540 <= p.length ? S = "内容超出了" : "" == y ? S = "姓名不能为空" : "" == f ? S = "电话不能为空" : 1 == k, 
         "" != S) wx.showModal({
             title: "提示",
             content: S,
@@ -325,26 +271,12 @@ Page({
             _ <= 0 ? (t.setData({
                 disabled: !0
             }), app.util.request({
-                url: "entry/wxapp/Posting",
+                url: "https://www.xjbmzxlt.cn",
                 cachetime: "0",
                 data: {
-                    details: p,
-                    img: I,
-                    user_id: v,
-                    user_name: y,
-                    user_tel: f,
-                    type2_id: h,
-                    type_id: w,
-                    money: _,
-                    type: c,
-                    sz: d,
-                    address: s,
-                    hb_money: T,
-                    hb_keyword: A,
-                    hb_num: N,
-                    hb_type: q,
-                    hb_random: P,
-                    cityname: a
+                    content:p,
+                    username:y,
+                    tel:f
                 },
                 success: function(e) {
                     wx.showToast({

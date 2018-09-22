@@ -1,7 +1,8 @@
+
 Page({
-  onLoad: function (options) {
+  onLoad: function (option) {
     this.setData({
-      title: options.title
+     id:option.id
     })
   }
 })

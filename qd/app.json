@@ -121,7 +121,7 @@
         "selectedIconPath": "zh_tcwq/pages/image/wode-foucs.png"
       },
       {
-        "pagePath": "zh_tcwq/pages/fabu/edit/edit",
+        "pagePath": "zh_tcwq/pages/test/sp",
         "text": "测试",
         "iconPath": "zh_tcwq/pages/image/dianpu.png",
         "selectedIconPath": "zh_tcwq/pages/image/dianpu-foucs.png"

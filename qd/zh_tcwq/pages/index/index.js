@@ -240,40 +240,16 @@ Page({
                             success: function(t) {
                                 console.log(t), wx.setStorageSync("user_info", t.userInfo);
                                 var a = t.userInfo.nickName, n = t.userInfo.avatarUrl;
-                                app.util.request({
-                                  url: "api/user/login",
-                                    cachetime: "0",
+                                wx.request({
+                                    url: "https://www.xjbmzxlt.cn/api/user/login",
                                     data: {
                                         code: e
                                     },
-                                    success: function(t) {
-                                        console.log(t), wx.setStorageSync("key", t.data.session_key), wx.setStorageSync("openid", t.data.openid);
-                                        var e = t.data.openid;
-                                        app.util.request({
-                                          url: "api/user/login",
-                                            cachetime: "0",
-                                            data: {
-                                                openid: e,
-                                                img: n,
-                                                name: a
-                                            },
-                                            success: function(t) {
-                                                console.log(t), c.setData({
-                                                    userinfo: t.data
-                                                }), wx.setStorageSync("users", t.data), wx.setStorageSync("uniacid", t.data.uniacid), 
-                                                null != i && app.util.request({
-                                                    url: "entry/wxapp/Binding",
-                                                    cachetime: "0",
-                                                    data: {
-                                                        fx_user: t.data.id,
-                                                        user_id: i
-                                                    },
-                                                    success: function(t) {
-                                                        console.log(t);
-                                                    }
-                                                });
-                                            }
-                                        });
+                                    success: function(ki) {
+                                        console.log(ki);
+                                      console.log(ki.data.res);
+                                        wx.setStorageSync("key", ki.data.res.session_key);
+                                        wx.setStorageSync("openid", ki.data.res.openid);                 
                                     }
                                 });
                             }

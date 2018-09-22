@@ -16,7 +16,7 @@
             <view class="swiper-container">
             <!--栏目开始-->
               <view wx:for="{{gategory_list}}" > 
-                <navigator url="/zh_tcwq/pages/settled/settled" hover-class="navigator-hover" class="plate-item">
+                <navigator url="/zh_tcwq/pages/fabu/edit/edit?id={{item.c_id}}&name={{item.c_name}}" hover-class="navigator-hover" class="plate-item">
                   <view class="plate-img">
                     <image src="http://manage.xjbmzxlt.cn{{item.img_path}}"></image>
                     </view>

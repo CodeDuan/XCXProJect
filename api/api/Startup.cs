@@ -32,6 +32,7 @@ namespace api
             {
                 options.Filters.Add<ErrFilter>();
             });
+            services.Configure<WechatConfig>(Configuration.GetSection("WechatConfig"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
