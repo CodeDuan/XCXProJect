@@ -17,7 +17,7 @@ namespace Dal
         /// </summary>
         //这种方式在单步调试的时候会出错暂时没找到原因
         //private static string connstr= AppConfigurtaionServices.Configuration["ConnectionStrings:DefaultConnection"];
-        private static string connstr;
+        protected static string connstr;
         public DbBase()
         {
             connstr = AppConfigurtaionServices.Configuration["ConnectionStrings:DefaultConnection"];

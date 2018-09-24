@@ -1,6 +1,6 @@
 <form bindreset="formReset" bindsubmit="formSubmit" reportSubmit="true">
     <view class="header">
-        <view class="header_title">发布{{gategoryname}}信息</view>
+        <view class="header_title">发布{{category_name}}信息</view>
         <view bindtap="know" class="header_right">发布须知</view>
     </view>
     <view class="content">

@@ -28,8 +28,8 @@ Page({
     onLoad: function(e) {
         console.log(e);
         this.setData({
-          gategoryid:e.id,
-          gategoryname:e.name
+          category_id:e.id,
+          category_name:e.name
         });
         
         var i = this, t = wx.getStorageSync("users").id;
@@ -41,65 +41,13 @@ Page({
                 timingFunc: "easeIn"
             }
         })
-        var a = e.info, n = e.money, s = e.type_id, o = e.type2_id, c = wx.getStorageSync("System");
-        wx.setNavigationBarTitle({
-            title: a
-        });
-        wx.getStorageSync("uniacid");
-        console.log(wx.getStorageSync("users")), i.setData({
-            type_id: s,
-            type2_id: o,
-            info: a,
-            procedures: Number(c.hb_sxf),
-            money: n,
-            url: wx.getStorageSync("url2"),
-            url1: wx.getStorageSync("url"),
-            name: wx.getStorageSync("users").name
-        }), wx.getLocation({
+        
+      console.log(wx.getStorageSync("users")),  wx.getLocation({
             type: "wgs84",
             success: function(e) {
                 var t = e.latitude + "," + e.longitude;
-                /*app.util.request({
-                    url: "entry/wxapp/map",
-                    cachetime: "0",
-                    data: {
-                        op: t
-                    },
-                    success: function(e) {
-                        i.setData({
-                            address: e.data.result.address
-                        });
-                    }
-                });*/
             }
-        }) /*app.util.request({
-            url: "entry/wxapp/Top",
-            cachetime: "0",
-            success: function(e) {
-                var t = e.data;
-                for (var a in t) 1 == t[a].type ? t[a].array = "置顶一天（收费" + t[a].money + "元）" : 2 == t[a].type ? t[a].array = "置顶一周（收费" + t[a].money + "元）" : 3 == t[a].type && (t[a].array = "置顶一月（收费" + t[a].money + "元）");
-                var n = [];
-                t.map(function(e) {
-                    var t;
-                    t = e.array, n.push(t);
-                }), n.push("取消置顶"), i.setData({
-                    stock: n,
-                    stick: t
-                });
-            }
-        }), app.util.request({
-            url: "entry/wxapp/Label",
-            cachetime: "0",
-            data: {
-                type2_id: o
-            },
-            success: function(e) {
-                for (var t in e.data) e.data[t].click_class = "selected1";
-                i.setData({
-                    label: e.data
-                });
-            }
-        });*/
+        }) 
     },
     selected: function(e) {
         var t = e.currentTarget.id, a = this.data.stick;
@@ -211,30 +159,7 @@ Page({
             imgArray1: _imgArray
         });
     },
-    /*switch1Change: function(e) {
-        console.log(e.detail.value), e.detail.value || this.setData({
-            stick_none: !1,
-            money1: 0,
-            type: 0
-        }), this.setData({
-            checked: e.detail.value
-        });
-    },
-    switch2Change: function(e) {
-        this.setData({
-            checked_welfare: e.detail.value
-        });
-    },
-    switch3Change: function(e) {
-        this.setData({
-            checked_average: e.detail.value
-        });
-    },
-    switch4Change: function(e) {
-        this.setData({
-            checked_password: e.detail.value
-        });
-    },*/
+
     formSubmit: function(e) {
         console.log("这是保存formid2");
         var t = this, a = wx.getStorageSync("city"), n = t.data.num + 1;
