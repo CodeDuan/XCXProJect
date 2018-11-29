@@ -84,7 +84,9 @@
     "zh_tcwq/pages/integral/integral",
     "zh_tcwq/pages/integral/myintegral",
     "zh_tcwq/pages/test/test",
-    "zh_tcwq/pages/test/sp"
+    "zh_tcwq/pages/test/sp",
+    "zh_tcwq/pages/List/List",
+    "zh_tcwq/pages/Info/Info"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -121,7 +123,7 @@
         "selectedIconPath": "zh_tcwq/pages/image/wode-foucs.png"
       },
       {
-        "pagePath": "zh_tcwq/pages/test/sp",
+        "pagePath": "zh_tcwq/pages/Info/Info",
         "text": "测试",
         "iconPath": "zh_tcwq/pages/image/dianpu.png",
         "selectedIconPath": "zh_tcwq/pages/image/dianpu-foucs.png"

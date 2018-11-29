@@ -36,7 +36,7 @@ namespace api.Controllers
         [HttpGet]
         public JsonResult Get()
         {
-            return Json(new { aa = MD5pwd.getmd5("123456") });
+            return Json(new { aa = "sssss" });
         }
 
         // GET api/values/5

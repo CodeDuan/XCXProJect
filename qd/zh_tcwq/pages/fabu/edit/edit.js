@@ -2,15 +2,9 @@ var app = getApp(), _imgArray = [];
 
 Page({
     data: {
-        stick_none: !1,
-        checked: !1,
-        checked_welfare: !1,
-        checked_average: !1,
-        checked_password: !1,
         know: !1,
         num: 1,
         disabled: !1,
-        money1: 0,
         upimgurl:"https://www.xjbmzxlt.cn/api/common/uploadimg"
     },
     bindMultiPickerChange: function(e) {
@@ -162,48 +156,34 @@ Page({
 
     formSubmit: function(e) {
         console.log("这是保存formid2");
-        var t = this, a = wx.getStorageSync("city"), n = t.data.num + 1;
-        t.setData({
-            num: n
-        });
-        var i = t.data.money1;
-        if ("1" == t.data.System.is_tzdz) var s = e.detail.value.dzaddress; else s = "";
-        console.log(s);
-        var o = t.data.procedures;
-        if (null == t.data.type) var c = 0; else c = t.data.type;
-        if (null == i) i = 0; else i = t.data.money1;
-        var r = t.data.label, l = [];
-        for (var u in r) "selected2" == r[u].click_class && l.push(r[u]);
-        var d = [];
-        l.map(function(e) {
-            var t = {};
-            t.label_id = e.id, d.push(t);
-        });
+        var t = this, a = wx.getStorageSync("city");
         var m = wx.getStorageSync("openid"), p = (e.detail.formId, e.detail.value.content.replace("\n", "↵")), y = e.detail.value.name, f = e.detail.value.tel;
         console.log(f);
-        
-        if ("" == p ? S = "内容不能为空" : 540 <= p.length ? S = "内容超出了" : "" == y ? S = "姓名不能为空" : "" == f ? S = "电话不能为空" : 1 == k, 
-        "" != S) wx.showModal({
+        var S="";//验证信息
+        if ("" == p ? S = "内容不能为空" : 540 <= p.length ? S = "内容超出了" : "" == y ? S = "姓名不能为空" : "" == f ? S = "电话不能为空" : 1 == 1, "" != S) {
+          wx.showModal({
             title: "提示",
             content: S,
             success: function(e) {},
             fail: function(e) {},
             complete: function(e) {}
-        }); else {
-            _ = _;
-            o = wx.getStorageSync("System");
+          });
+        } else {
+            var o = wx.getStorageSync("System");
+            console.log(1);
+            console.log(o);
             if (0 == _imgArray.length) var I = ""; else I = _imgArray.join(",");
-            _ <= 0 ? (t.setData({
-                disabled: !0
-            }), app.util.request({
-                url: "https://www.xjbmzxlt.cn",
-                cachetime: "0",
+            console.log(I);
+                wx.request({
+                  method: 'POST',
+                  url: "https://www.xjbmzxlt.cn/api/message/addusermessage",
                 data: {
                     content:p,
-                    username:y,
-                    tel:f
+                    name:y,
+                    phone:f
                 },
                 success: function(e) {
+                  console.log(e);
                     wx.showToast({
                         title: "发布成功",
                         icon: "",
@@ -222,106 +202,7 @@ Page({
                         });
                     }, 2e3);
                 }
-            })) : (t.setData({
-                disabled: !0
-            }), console.log(t.data.money, t.data.money1, T, _, x, Number(t.data.money) + Number(t.data.money1)), 
-            app.util.request({
-                url: "entry/wxapp/Pay",
-                cachetime: "0",
-                data: {
-                    openid: m,
-                    money: _
-                },
-                success: function(e) {
-                    wx.requestPayment({
-                        timeStamp: e.data.timeStamp,
-                        nonceStr: e.data.nonceStr,
-                        package: e.data.package,
-                        signType: e.data.signType,
-                        paySign: e.data.paySign,
-                        success: function(e) {
-                            0 < Number(t.data.money) + Number(t.data.money1) && app.util.request({
-                                url: "entry/wxapp/fx",
-                                cachetime: "0",
-                                data: {
-                                    user_id: v,
-                                    money: Number(t.data.money) + Number(t.data.money1)
-                                },
-                                success: function(e) {
-                                    console.log(e);
-                                }
-                            }), app.util.request({
-                                url: "entry/wxapp/Posting",
-                                cachetime: "0",
-                                data: {
-                                    details: p,
-                                    img: I,
-                                    user_id: v,
-                                    user_name: y,
-                                    user_tel: f,
-                                    type2_id: h,
-                                    type_id: w,
-                                    money: _,
-                                    type: c,
-                                    sz: d,
-                                    address: s,
-                                    hb_money: T,
-                                    hb_keyword: A,
-                                    hb_num: N,
-                                    hb_type: q,
-                                    hb_random: P,
-                                    cityname: a
-                                },
-                                success: function(e) {
-                                    0 == x || null == x || "" == x || app.util.request({
-                                        url: "entry/wxapp/SaveTzPayLog",
-                                        cachetime: "0",
-                                        data: {
-                                            tz_id: e.data,
-                                            money: _,
-                                            money1: t.data.money,
-                                            money2: t.data.money1,
-                                            money3: T
-                                        },
-                                        success: function(e) {}
-                                    }), wx.showToast({
-                                        title: "发布成功",
-                                        icon: "",
-                                        image: "",
-                                        duration: 2e3,
-                                        mask: !0,
-                                        success: function(e) {},
-                                        fail: function(e) {},
-                                        complete: function(e) {}
-                                    }), setTimeout(function() {
-                                        wx.switchTab({
-                                            url: "../../index/index",
-                                            success: function(e) {},
-                                            fail: function(e) {},
-                                            complete: function(e) {}
-                                        });
-                                    }, 2e3);
-                                }
-                            });
-                        },
-                        fail: function(e) {
-                            wx.showToast({
-                                title: "支付失败",
-                                duration: 1e3
-                            });
-                        },
-                        complete: function(e) {
-                            console.log(e), "requestPayment:fail cancel" == e.errMsg && (wx.showToast({
-                                title: "取消支付",
-                                icon: "loading",
-                                duration: 1e3
-                            }), t.setData({
-                                disabled: !1
-                            }));
-                        }
-                    });
-                }
-            }));
+            })
         }
     },
     cancel: function(e) {

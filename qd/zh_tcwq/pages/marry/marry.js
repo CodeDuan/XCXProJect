@@ -2,6 +2,26 @@ var app = getApp();
 
 Page({
     data: {
+      classification_info: [{
+        tz: {
+          user_img:  "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1541523948610&di=75fad24b1d3fb0572170e6bfb2eee6c6&imgtype=0&src=http%3A%2F%2Fi10.hoopchina.com.cn%2Fhupuapp%2Fbbs%2F966%2F16313966%2Fthread_16313966_20180726164538_s_65949_o_w1024_h1024_62044.jpg%3Fx-oss-process%3Dimage%2Fresize%2Cw_800%2Fformat%2Cjpg",
+          user_img2: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1541522122754&di=df37de95aab0446adc39bfbe4db07fe5&imgtype=0&src=http%3A%2F%2Fold.bz55.com%2Fuploads%2Fallimg%2F170224%2F140-1F224113430.jpg",
+          logo: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1541522122754&di=198b306e882bef054d75f96f5edc58ef&imgtype=0&src=http%3A%2F%2Fpic29.nipic.com%2F20130511%2F9252150_174018365301_2.jpg",
+          user_name: "飞翔的鱼",//用户名
+          type2_name: "二手车",
+          user_tel: "17788212797",//电话
+          details: "这辆车很好这辆车很好,这辆车很好这辆车很好，这辆车很好这辆车很好，这辆车很好这辆车很好这辆车很好，这辆车很好这辆车很好这辆车很好，这辆车很好这辆车很好这辆车很好，这辆车很好这辆车很好这辆车很好这辆车很好，这辆车很好这辆车很好这辆车很好这辆车很好，这辆车很好这辆车很好这辆车很好这辆车很好，这辆车很好这辆车很好这辆车很好。",//详情
+          img: [{
+            url:"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1541522122757&di=af2762a66c5f25bbecc7fa93aa985b90&imgtype=0&src=http%3A%2F%2Fpic171.nipic.com%2Ffile%2F20180630%2F26855181_165658221000_2.jpg"
+          },{
+              url:"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1541522122756&di=404fd04b361a33f30c92ea3df38bbe8c&imgtype=0&src=http%3A%2F%2Fold.bz55.com%2Fuploads%2Fallimg%2F170118%2F140-1F11Q45112.jpg"
+          }],
+          time: "2018-11-06 22:11",//发布时间
+          id: 2,
+          views: 11,//浏览人数
+          givelike: 22//点赞数
+        }
+      }],
         sliderOffset: 0,
         activeIndex1: 1,
         sliderLeft: 35,

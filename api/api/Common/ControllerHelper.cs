@@ -8,7 +8,7 @@ namespace api.Common
 {
     public static class ControllerHelper
     {
-        public static JsonResult CreateResult(this IActionResult action, object data,int res=1, string msg = "")
+        public static JsonResult CreateResult(this ControllerBase action, object data,int res=1, string msg = "")
         {
             return new JsonResult(new { res, msg, data });
         }

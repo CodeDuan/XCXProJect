@@ -11,17 +11,17 @@
             <view class="weui-tab__content content" wx:if="{{classification_info.length!=0}}" wx:for="{{classification_info}}" wx:key="*this">
                 <view class="content_top">
                     <view class="content_left">
-                        <image class="content_img" src="{{item.tz.user_img}}" wx:if="{{item.tz.user_img!=null}}"></image>
-                        <image class="content_img" src="{{url}}{{item.tz.user_img2}}" wx:elif="{{item.tz.user_img2!=''}}"></image>
-                        <image class="content_img" src="{{url}}{{item.tz.logo}}" wx:else></image>
+                        <image class="content_img" src="{{item.user_img}}" wx:if="{{item.user_img!=null}}"></image>
+                        <image class="content_img" src="{{url}}{{item.user_img2}}" wx:elif="{{item.user_img2!=''}}"></image>
+                        <image class="content_img" src="{{url}}{{item.logo}}" wx:else></image>
                         <view class="content_zhong">
-                            <view class="content_name">{{item.tz.user_name}}</view>
+                            <view class="content_name">{{item.wechatuser}}</view>
                             <view class="content_text">
-                                <view class="content_zheng" wx:if="{{item.tz.type2_name!=null}}">{{item.tz.type2_name}}</view>
+                                <view class="content_zheng" wx:if="{{item.type2_name!=null}}">{{item.type2_name}}</view>
                             </view>
                         </view>
                     </view>
-                    <view bindtap="phone" class="content_right" data-id="{{item.tz.user_tel}}">
+                    <view bindtap="phone" class="content_right" data-id="{{item.phone}}">
                         <view class="rel">
                             <image class="ab udlr" mode="aspectFill" src="../image/phone1.gif"></image>
                         </view>
@@ -29,25 +29,25 @@
                     </view>
                 </view>
                 <view class="content_wen gobyndsingle">
-          {{item.tz.details}}
+          {{item.content}}
         </view>
                 <!--<view class="content_wen">
                     <view style="border:1rpx solid {{item.number}};color:{{item.number}}" wx:for="{{item.label}}" wx:key="*this">{{item.label_name}}</view>
                 </view>-->
-                <view class="content_picture" wx:if="{{item.tz.img!=''}}">
-                    <image src="{{item.url}}" wx:for="{{item.tz.img}}" wx:key="*this"></image>
+                <view class="content_picture" wx:if="{{item.img!=''}}">
+                    <image src="https://www.xjbmzxlt.cn/{{item}}" wx:for="{{item.img}}" wx:key="*this"></image>
                 </view>
                 <view class="content_chakan">
-                    <view class="content_info">{{item.tz.time}}发布</view>
-                    <view bindtap="see" class="content_info2" data-id="{{item.tz.id}}">查看详情>></view>
+                    <view class="content_info">{{item.createdate}}发布</view>
+                    <view bindtap="see" class="content_info2" data-id="{{item.id}}">查看详情>></view>
                 </view>
                 <view class="content_liulan">
                     <image class="eye" src="../image/liulan.png"></image>
-                    <view class="content_num">{{item.tz.views}}</view>
+                    <view class="content_num">{{item.views}}</view>
                     <view class="content_ren">人浏览</view>
-                    <image bindtap="thumbs_up" class="zan" data-id="{{item.tz.id}}" data-num="{{item.tz.givelike}}" src="../image/zan.png" wx:if="{{thumbs_ups==null}}"></image>
+                    <image bindtap="thumbs_up" class="zan" data-id="{{item.id}}" data-num="{{item.givelike}}" src="../image/zan.png" wx:if="{{thumbs_ups==null}}"></image>
                     <image class="zan" src="../image/thumbs_up.png" wx:if="{{thumbs_ups==true}}"></image>
-                    <view class="zannum" wx:if="{{thumbs_up==null}}">{{item.tz.givelike}}</view>
+                    <view class="zannum" wx:if="{{thumbs_up==null}}">{{item.givelike}}</view>
                     <view class="zannum" wx:if="{{thumbs_up!=null}}">{{thumbs_up}}</view>人点赞
           <view class="kuang"></view>
                 </view>
@@ -59,7 +59,7 @@
         </view>
     </view>
 </scroll-view>
-<view bindtap="hdsy" class="comments border_two rel">
+<!--<view bindtap="hdsy" class="comments border_two rel">
     <button></button>
   首页
 </view>
@@ -70,4 +70,4 @@
 <view class="comments border_four ">
   转发
   <button openType="share"></button>
-</view>
+</view>-->

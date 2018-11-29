@@ -11,7 +11,7 @@ namespace api.Filter
     {
         public void OnException(ExceptionContext filterContext)
         {
-            Object result = new { Code = 500, Message = filterContext.Exception.Message };
+            Object result = new { Code = 500, Message = filterContext.Exception.Message, StackTrace=filterContext.Exception.StackTrace };
 
             filterContext.Result = new ObjectResult(result);
         }
